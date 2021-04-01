@@ -1,0 +1,24 @@
+---
+openapi: 3.0.0
+info:
+  title: hotelbooking
+  description: A service that uses a users hotel booking data to predict whether or not ther booking will be cancelled or not.
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Cloudmesh REST Service Example
+  license:
+    name: Apache
+  version: "1.1"
+servers:
+- url: http://localHost:8080/hotelbooking
+paths:
+  ? /hotel/<arg1>/<arg2>/<arg3>/<arg4>/<arg5>/<arg6>/<arg7>/<arg8>/<arg9>/<arg9>/<arg9>/<arg9>/<arg10>/<arg11>/<arg12>/<arg13>/<arg14>/<arg15>/<arg16>/<arg17>/<arg18>/<arg19>/<arg20>/<arg21>/<arg22>/<arg23>/<arg24>/<arg25>/<arg26>/<arg27>
+  : get:
+      tags:
+      - Your Info
+      description: Returns prediction of hotel booking
+      operationId: hotel.dataset
+      responses:
+        "200":
+          description: Your hotel booking prediction
+components: {}
