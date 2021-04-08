@@ -12,7 +12,7 @@ info:
 servers:
 - url: https://virtserver.swaggerhub.com/log3333/spec_file/1.1
   description: SwaggerHub API Auto Mocking
-- url: http://localHost:8080/hotelbooking
+- url: http://localHost:8080/Hotel
 paths:
   /file/<filename>:
     post:
