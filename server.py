@@ -5,13 +5,13 @@ from joblib import load
 
 #load the model
 
-my_model = load('svc_model.pkl')
+my_model = load('model.pkl')
 
 # Create the application instance
 app = connexion.App(__name__, specification_dir="./")
 
 # Read the yaml file to configure the endpoints
-app.add_api("master.yaml")
+app.add_api("spec_file.yaml")
 
 # create a URL route in our application for "/"
 @app.route("/")

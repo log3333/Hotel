@@ -1,0 +1,47 @@
+---
+openapi: 3.0.0
+info:
+  title: hotelbooking
+  description: A service that uses a users hotel booking data to predict whether or not ther booking will be cancelled or not.
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Cloudmesh REST Service Example
+  license:
+    name: Apache
+  version: "1.1"
+servers:
+- url: https://virtserver.swaggerhub.com/log3333/spec_file/1.1
+  description: SwaggerHub API Auto Mocking
+- url: http://localHost:8080/hotelbooking
+paths:
+  /file/<filename>:
+    post:
+      tags:
+      - Upload
+      summary: Upload a file
+      operationId: prediction.predict
+      parameters:
+      - name: file
+        in: query
+        description: upload csv of your hotel booking information
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body'
+      responses:
+        "405":
+          description: Invalid input
+components:
+  schemas:
+    body:
+      type: object
+      properties:
+        file:
+          type: string
+          format: binary
