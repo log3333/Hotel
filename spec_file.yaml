@@ -1,47 +1,49 @@
----
 openapi: 3.0.0
 info:
+  version: '1.1'
   title: hotelbooking
   description: A service that uses a users hotel booking data to predict whether or not ther booking will be cancelled or not.
-  termsOfService: http://swagger.io/terms/
+  termsOfService: 'http://swagger.io/terms/'
   contact:
     name: Cloudmesh REST Service Example
   license:
     name: Apache
-  version: "1.1"
-servers:
-- url: https://virtserver.swaggerhub.com/log3333/spec_file/1.1
-  description: SwaggerHub API Auto Mocking
-- url: http://localHost:8080/Hotel
+    
 paths:
+  #arguments used to make dataset of user inputs
+  /hotel/<hotel>/<leadtime>/<weekend>/<week>:
+    get:
+      tags:
+        - Your Info
+      operationId: prediction.arg
+      description: Returns prediction of hotel booking
+      responses:
+        '200':
+          description: 'Your hotel booking prediction'
   /file/<filename>:
     post:
       tags:
-      - Upload
-      summary: Upload a file
-      operationId: prediction.predict
+        - Upload
+      summary: Upload a file 
+      operationId: prediction.upload
       parameters:
-      - name: file
-        in: query
-        description: upload csv of your hotel booking information
-        required: true
-        style: form
-        explode: true
-        schema:
-          type: string
+        - name: file
+          in: query
+          description: upload csv of your hotel booking information 
+          required: true
+          schema:
+            type: string 
+      responses:
+        '405':
+          description: Invalid input
       requestBody:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/body'
-      responses:
-        "405":
-          description: Invalid input
-components:
-  schemas:
-    body:
-      type: object
-      properties:
-        file:
-          type: string
-          format: binary
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+servers:
+- url: http://0.0.0.0:8080/hotelbooking

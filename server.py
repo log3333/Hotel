@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template, request
 from flask import jsonify
 import connexion
 from joblib import load
