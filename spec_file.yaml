@@ -30,7 +30,7 @@ paths:
         - name: file
           in: query
           description: upload csv of your hotel booking information 
-          required: true
+          required: false
           schema:
             type: string 
       responses:

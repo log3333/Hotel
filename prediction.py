@@ -1,3 +1,4 @@
+import os
 from sklearn import datasets
 from joblib import load
 import numpy as np
@@ -7,12 +8,31 @@ from flask import send_file
 from sklearn import preprocessing
 
 model = load('model.pkl')
-UPLOAD_FOLDER=''
+UPLOAD_FOLDER='.'
 
 def upload(filename):
     f = request.files['file']
     f.save(filename)
-    return jsonify("Upload success")
+    import csv
+    file = open(filename)
+    for row in csv.reader(file):
+        stuff = row
+        
+    data = np.array([stuff])
+    data.reshape(-1, 1)
+
+    enc = preprocessing.OrdinalEncoder()
+    enc.fit(data)
+    data_new = enc.transform(data)
+    data_new.shape
+
+    my_prediction = model.predict(data_new)
+    my_prediction = int(my_prediction[0])
+    if my_prediction == 0:
+        reservation = "Your reservation was not canceled"
+    else:
+        reservation = "Your reservation was canceled"
+    return jsonify(reservation)
 
 def arg(hotel, leadtime, weekend, week):
     #hotel: 1-resort hotel, 0-City hotel
